@@ -30,12 +30,17 @@ struct Vehicle {
     var bootVolume: Double
     var engineVehicle: EngineStatus
     var windowsVehicle: WindowsStatus
+    var description: String {
+        get {
+            return "Модель ТС: \(modelName), тип: \(vehicleType.rawValue), год выпуска: \(yearVehicle), объем багажника/кузова: \(bootVolume) л., \(engineVehicle.rawValue), \(windowsVehicle.rawValue)."
+        }
+    }
     
     mutating func openWindows() {
-        self.windowsVehicle = .close
+        self.windowsVehicle = .open
     }
     mutating func closeWindows() {
-        self.windowsVehicle = .open
+        self.windowsVehicle = .close
     }
     mutating func switchWindowsStatus() {
         switch windowsVehicle {
@@ -60,4 +65,21 @@ struct Vehicle {
             self.engineVehicle = .off
         }
     }
+    
+    init(modelName: String, vehicleType: VehicleType, yearVehicle: Int, bootVolume: Double, engineVehicle: EngineStatus, windowsVehicle: WindowsStatus) {
+        self.modelName = modelName
+        self.vehicleType = vehicleType
+        self.yearVehicle = yearVehicle
+        self.bootVolume = bootVolume
+        self.engineVehicle = engineVehicle
+        self.windowsVehicle = windowsVehicle
+    }
 }
+
+var vehicle1 = Vehicle(modelName: "KIA", vehicleType: .car, yearVehicle: 2013, bootVolume: 300, engineVehicle: .off, windowsVehicle: .close)
+
+print(vehicle1.description)
+vehicle1.switchEngineStatus()
+print(vehicle1.description)
+vehicle1.openWindows()
+print(vehicle1.description)
