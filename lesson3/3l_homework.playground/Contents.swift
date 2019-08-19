@@ -6,29 +6,58 @@
 //6. Вывести значения свойств экземпляров в консоль.
 
 import UIKit
+import Foundation
+
+enum VehicleType: String {
+    case car = "Легковой автомобиль"
+    case truck = "Грузовой автомобиль"
+}
 
 enum EngineStatus: String {
     case on = "Двигатель запущен"
     case off = "Двигиатель заглушен"
 }
 
-enum WindowStatus: String {
+enum WindowsStatus: String {
     case open = "Окна открыты"
     case close = "Окна закрыты"
 }
 
-struct Car {
-    var modelCar: String
-    var yearIssueCar: Int
+struct Vehicle {
+    let modelName: String
+    let vehicleType: VehicleType
+    let yearVehicle: Int
     var bootVolume: Double
-    var EngineCar: EngineStatus
-    var WindowsCar: WindowStatus
-}
-
-struct Truck {
-    var modelTruck: String
-    var yearIssueTruck: Int
-    var bootVolume: Double
-    var EngineTruck: EngineStatus
-    var WindowsTruck: WindowStatus
+    var engineVehicle: EngineStatus
+    var windowsVehicle: WindowsStatus
+    
+    mutating func openWindows() {
+        self.windowsVehicle = .close
+    }
+    mutating func closeWindows() {
+        self.windowsVehicle = .open
+    }
+    mutating func switchWindowsStatus() {
+        switch windowsVehicle {
+        case .open:
+            self.windowsVehicle = .close
+        case .close:
+            self.windowsVehicle = .open
+        }
+    }
+    
+    mutating func onEngine() {
+        self.engineVehicle = .on
+    }
+    mutating func offEngine() {
+        self.engineVehicle = .off
+    }
+    mutating func switchEngineStatus() {
+        switch engineVehicle {
+        case .off:
+            self.engineVehicle = .on
+        case .on:
+            self.engineVehicle = .off
+        }
+    }
 }
