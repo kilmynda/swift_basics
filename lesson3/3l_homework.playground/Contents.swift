@@ -7,4 +7,28 @@
 
 import UIKit
 
+enum EngineStatus: String {
+    case on = "Двигатель запущен"
+    case off = "Двигиатель заглушен"
+}
 
+enum WindowStatus: String {
+    case open = "Окна открыты"
+    case close = "Окна закрыты"
+}
+
+struct Car {
+    var modelCar: String
+    var yearIssueCar: Int
+    var bootVolume: Double
+    var EngineCar: EngineStatus
+    var WindowsCar: WindowStatus
+}
+
+struct Truck {
+    var modelTruck: String
+    var yearIssueTruck: Int
+    var bootVolume: Double
+    var EngineTruck: EngineStatus
+    var WindowsTruck: WindowStatus
+}
